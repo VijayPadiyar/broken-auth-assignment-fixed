@@ -1,0 +1,57 @@
+LOGIN
+Request: POST http://localhost:3000/auth/login
+Body:
+{
+  "email": "vijay@example.com",
+  "password": "password123"
+}
+Response:
+{
+    "message": "OTP sent",
+    "loginSessionId": "01hjy"
+}
+TerminalLog:
+[OTP] Session 01hjy - OTP: 514143
+POST /auth/login -> 200 (47ms)
+
+VERIFYOTP
+Request: POST http://localhost:3000/auth/verify-otp
+Body:
+{
+  "loginSessionId": "01hjy",
+  "otp": "514143"
+}
+Response:
+{
+    "message": "OTP verified",
+    "sessionId": "01hjy"
+}
+VSCode terminal:
+POST /auth/verify-otp
+POST /auth/verify-otp -> 200 (6ms)
+
+TOKEN GENERATION
+Request: POST http://localhost:3000/auth/token
+Response:
+{
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZpamF5QGV4YW1wbGUuY29tIiwic2Vzc2lvbklkIjoiMDFoankiLCJpYXQiOjE3NzA5MTkxNDIsImV4cCI6MTc3MDkyMDA0Mn0.KG1tCb3ui-kPQV6NhRBEEjKM7iF-nrF4nfYDt0qgUys",
+    "expires_in": 900
+}
+VScode Terminal:
+POST /auth/token
+POST /auth/token -> 200 (24ms)
+
+PROTECTED ROUTE
+Request: GET http://localhost:3000/protected
+Header: Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZpamF5QGV4YW1wbGUuY29tIiwic2Vzc2lvbklkIjoiMDFoankiLCJpYXQiOjE3NzA5MTkxNDIsImV4cCI6MTc3MDkyMDA0Mn0.KG1tCb3ui-kPQV6NhRBEEjKM7iF-nrF4nfYDt0qgUys
+Response:
+{
+    "message": "Access granted",
+    "user": {
+        "email": "vijay@example.com",
+        "sessionId": "01hjy",
+        "iat": 1770919142,
+        "exp": 1770920042
+    },
+    "success_flag": "FLAG-dmlqYXlAZXhhbXBsZS5jb21fQ09NUExFVEVEX0FTU0lHTk1FTlQ="
+}
