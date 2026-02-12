@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
 
 module.exports = function (req, res, next) {
-  
   const token = req.headers.authorization;
 
   if (!token) {
@@ -11,7 +10,10 @@ module.exports = function (req, res, next) {
   try {
     const secret = process.env.JWT_SECRET || "default-secret-key";
     const decoded = jwt.verify(token.replace("Bearer ", ""), secret);
+
     req.user = decoded;
+
+    next(); 
   } catch (error) {
     return res.status(401).json({ error: "Invalid token" });
   }
