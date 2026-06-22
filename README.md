@@ -95,17 +95,3 @@ After fixing the bugs, you should be able to run the following sequence successf
 3.  **Get Token**: Exchange the session cookie for a JWT (`access_token`).
 4.  **Access Protected Route**: Use the JWT to get a 200 OK response with user details and a **unique Success Flag**.
 
-**Important**: You must use **your own email address** when testing the login flow. The success flag is generated based on the email you use.
-
-
-
-
-## Submission
-
-To submit your assignment:
-
-1.  Push your code to a **Public GitHub Repository**.
-2.  Add a file named `output.txt` in your repository.
-    *   This file must contain the terminal output of all 4 test commands (Login, Verify OTP, Get Token, Access Protected Route).
-    *   Ensure the final command's output showing the `success_flag` is clearly visible in this file.
-3.  Share the link to your repository.
